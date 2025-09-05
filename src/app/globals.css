@@ -1,26 +1,47 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme{
+    --color-primary:#9EFF00;
+    --color-secoundary:#575757;
+    --color-grayText:#707070;
+    --font-primary:"Lato", sans-serif;
+    
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* custom scrollbar */
+::-webkit-scrollbar{
+    width: 6px;
+    z-index: 10;
+}
+::-webkit-scrollbar-track{
+ background:linear-gradient(to bottom,black ,blueviolet);
+}
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(to bottom, #9EFF00 ,rgb(73, 73, 73));
+    border-radius: 10px;
+   
+}
+.navitem{
+    position: relative;
+    width: 100%;
+    display: inline;
+}
+.navitem::after{
+        content: '';
+        position: absolute;
+        width:0%;
+        height: 2px;
+        display: flex;
+        bottom: -10px;
+        background-color:#9EFF00;
+        transition: all 0.3s linear;
+    
+}
+.navitem:hover::after{
+    width: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+@import "tailwindcss";
+@plugin '../../hero.ts';
+/* Note: You may need to change the path to fit your project structure */
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
