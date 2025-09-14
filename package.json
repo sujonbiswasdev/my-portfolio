@@ -6,7 +6,6 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
   },
   "dependencies": {
     "@heroui/react": "^2.8.3",
