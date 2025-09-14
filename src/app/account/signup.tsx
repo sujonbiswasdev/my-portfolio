@@ -1,6 +1,7 @@
 import { Modal, ModalContent } from '@heroui/react'
 import React from 'react'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 const Signup = () => {
     const [isModal,setModal] = useState(false)
      const handleClose=()=>{
@@ -8,7 +9,7 @@ const Signup = () => {
     }
   return (
      <div>
-        <button className='cursor-pointer' onClick={()=>setModal(!isModal)}>Account</button>
+        <motion.button initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{duration:0.2}} className='cursor-pointer' onClick={()=>setModal(!isModal)}>Account</motion.button>
         <div>
              <Modal isOpen={isModal} onOpenChange={()=>setModal(!isModal)} onClose={handleClose} size='4xl' backdrop='blur' placement="top">
                         <ModalContent>

@@ -6,6 +6,9 @@ import axios from "axios";
 import Signup from "@/app/account/signup";
 import Mymodal from "@/app/account/mymodal";
 import Responsive from "./responsive";
+import Meeting from "@/app/meeting/page";
+import { motion } from "framer-motion";
+
 type NavItem={
   item:any;
   hred:string
@@ -14,7 +17,7 @@ const Navbar = () => {
 const [NavItems, setNavitems] = useState<NavItem[]>([]);
 const [isOpen, setisOpen] = useState(false);
 useEffect(()=>{
-  axios.get("/data/navItem.json").then((response) => {
+  axios.get("/data/navitem.json").then((response) => {
     setNavitems(response.data);
   });
 },[])
@@ -25,38 +28,39 @@ useEffect(()=>{
       <Container className="px-[50px]  md:px-[15px] lg:px-[90px] py-3">
          <nav className="flex justify-between items-center">
         {/* logo */}
-        <div>
+        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{duration:0.2}}>
           <Link href="/"><h1 className="bg-linear-to-r from-primary to-red-700  text-transparent bg-clip-text inline-block text-3xl font-bold cursor-pointer transition-all duration-150  hover:scale-120 ">
             su<span className="">jon</span>
           </h1></Link>
-        </div>
+        </motion.div>
 
         {/* menu */}
         <div className="hidden md:flex md:gap-[20px] lg:gap-[40px]">
           {NavItems.map((items,index) => (
-            <ul key={index}>
+            <motion.ul initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{duration:0.2}} key={index}>
               <Link className="navitem" href={items.item==='Home'?"/":`/${items.item.toLowerCase()}`} >
                 {items.item}
               </Link>
-            </ul>
+            </motion.ul>
+            
           ))}
         </div>
 
          <div className="flex gap-1 md:gap-5 lg:gap-10 items-center">
           {/* account */}
           <div className="hidden md:flex gap-1 md:gap-2 lg:gap-3">
-         <Link href="/contact">   <button
+         <Link href="/contact">   <motion.button initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{duration:0.2}}
               className="text-white px-4 py-2 rounded-xl border-1 border-primary cursor-pointer"
             >
               Contact Me
-            </button> </Link>
-            <button  className="text-white px-6 py-2 border-1 border-white rounded-xl">
+            </motion.button> </Link>
+            <motion.button initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{duration:0.2}}  className="text-white px-6 py-2 border-1 border-white rounded-xl">
               {value===true?<Signup/>:<Mymodal/>}
-            </button>
-            <button className="px-6 py-2 border-1 border-amber-400 cursor-pointer
+            </motion.button>
+            <motion.button initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{duration:0.2}} className="px-6 py-2 border-1 border-amber-400 cursor-pointer
              rounded-xl">
-              meet
-            </button>
+              {<Meeting/>}
+            </motion.button>
           </div>
           <div className="flex gap-10 items-center">
              {/* dark and light mode */}

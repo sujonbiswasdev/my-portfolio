@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@heroui/react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 type responsiveItem={
   NavItems:any,
   isOpen:any,
